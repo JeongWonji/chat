@@ -19,6 +19,7 @@ socket.on("update", function (data) {
   var chat = document.getElementById("chat");
 
   var message = document.createElement("div");
+  console.log(data);
   var node = document.createTextNode(`${data.name}: ${data.message}`);
   var className = "";
 
