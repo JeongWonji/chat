@@ -12,14 +12,14 @@ const server = http.createServer(app)
 const io = socket(server)
 
 const chat = require("./src/apis/root/index.js")
-const Chatting = require("./src/apis/chat/chat.js")
+const Chat = require("./src/models/socket/Chat.js")
 
 app.use('/css', express.static('./public/css'))
 app.use('/js', express.static('./public/js'))
 
 app.use("/", chat);
 
-Chatting.start(io);
+Chat.start(io);
 
 /* 서버를 8080 포트로 listen */
 server.listen(8080, function() {

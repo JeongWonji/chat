@@ -19,7 +19,7 @@ socket.on('connect', function() {
 socket.on('update', function(data) {
     const msg = document.createElement('div')
     const nodeChat = document.createTextNode(`${data.name}: ${data.message}`)
-    var className = ''
+    let className = ''
 
     switch(data.type) {
         case 'message':
