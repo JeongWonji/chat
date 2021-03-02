@@ -1,26 +1,27 @@
 /* 설치한 express 모듈 불러오기 */
-const express = require("express");
-const chat = require("./src/apis/root");
-const Chatting = require("./src/apis/chat/chat");
-
-const http = require("http");
+const express = require('express')
 /* 설치한 socket.io 모듈 불러오기 */
-const socket = require("socket.io");
+const socket = require('socket.io')
+/* Node.js 기본 내장 모듈 불러오기 */
+const http = require('http')
 /* express 객체 생성 */
-const app = express();
+const app = express()
 /* express http 서버 생성 */
-const server = http.createServer(app);
-
+const server = http.createServer(app)
 /* 생성된 서버를 socket.io에 바인딩 */
-const io = socket(server);
+const io = socket(server)
 
-app.use("/css", express.static("./public/css"));
-app.use("/js", express.static("./public/js"));
+const chat = require("./src/apis/root/index.js")
+const Chatting = require("./src/apis/chat/chat.js")
+
+app.use('/css', express.static('./public/css'))
+app.use('/js', express.static('./public/js'))
 
 app.use("/", chat);
 
 Chatting.start(io);
 
-server.listen(8080, () => {
-  console.log("http://localhost:8080");
-});
+/* 서버를 8080 포트로 listen */
+server.listen(8080, function() {
+  console.log('서버 실행 중..')
+})
